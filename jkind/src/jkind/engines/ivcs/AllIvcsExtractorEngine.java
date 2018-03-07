@@ -324,6 +324,7 @@ public class AllIvcsExtractorEngine extends SolverBasedEngine {
 		long before = System.currentTimeMillis();
 		JKindSettings js = new JKindSettings();
 		js.reduceIvc = true; 
+		js.allIvcs = false;
 		js.timeout = TIMEOUT; 
 		// optional-- could be commented later:
 		//js.scratch = true;
@@ -436,6 +437,7 @@ public class AllIvcsExtractorEngine extends SolverBasedEngine {
 		long before = System.currentTimeMillis();
 		JKindSettings js = new JKindSettings();
 		js.reduceIvc = true; 
+		js.allIvcs = false;
 		js.timeout = TIMEOUT; 
 		// optional-- could be commented later:
 		//js.scratch = true;
@@ -487,6 +489,7 @@ public class AllIvcsExtractorEngine extends SolverBasedEngine {
 		long before = System.currentTimeMillis();
 		JKindSettings js = new JKindSettings();
 		js.reduceIvc = false; 
+		js.allIvcs = false;
 		js.timeout = TIMEOUT; 
 		// optional-- could be commented later:
 		//js.scratch = true;

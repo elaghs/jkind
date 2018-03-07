@@ -41,8 +41,8 @@ public class MiniJKind extends Engine {
 				settings.xml = false;
 				settings.xmlToStdout = false;
 				settings.allIvcs = false;
-				settings.allIvcsAlgorithm = 1;
-				settings.allIvcsMaxGrows = 1000;
+				//settings.allIvcsAlgorithm = 1;
+				//settings.allIvcsMaxGrows = 1000;
 				settings.excel = false; 
 				settings.miniJkind = true;
  
@@ -70,6 +70,8 @@ public class MiniJKind extends Engine {
 			} 
 		} 
 		catch (Throwable t) {  
+			System.out.println ("EXCEPT: " + t.getMessage());
+			t.printStackTrace();
 			System.exit(ExitCodes.UNCAUGHT_EXCEPTION);
 		}
 	}
