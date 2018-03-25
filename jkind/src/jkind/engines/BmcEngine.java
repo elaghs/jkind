@@ -10,19 +10,37 @@ import jkind.engines.messages.InvariantMessage;
 import jkind.engines.messages.Itinerary;
 import jkind.engines.messages.UnknownMessage;
 import jkind.engines.messages.ValidMessage;
+import jkind.lustre.NamedType;
+import jkind.lustre.VarDecl;
+import jkind.sexp.Symbol;
 import jkind.solvers.Model;
 import jkind.solvers.Result;
 import jkind.solvers.SatResult;
 import jkind.solvers.UnknownResult;
+import jkind.translation.Lustre2Sexp;
 import jkind.translation.Specification;
+import jkind.util.LinkedBiMap;
 import jkind.util.StreamIndex;
 
 public class BmcEngine extends SolverBasedEngine {
 	public static final String NAME = "bmc";
 	private List<String> validProperties = new ArrayList<>();
-
+	private final LinkedBiMap<String, Symbol> ivcMap;
+	
 	public BmcEngine(Specification spec, JKindSettings settings, Director director) {
 		super(NAME, spec, settings, director);
+		ivcMap = Lustre2Sexp.createIvcMap(spec.node.ivc);  
+	}
+	
+	@Override
+	protected void initializeSolver() {
+		solver = getSolver();
+		solver.initialize(); 
+		for (Symbol e : ivcMap.values()) {
+			solver.define(new VarDecl(e.str, NamedType.BOOL)); 
+		} 
+		solver.define(spec.getIvcTransitionRelation());
+		solver.define(new VarDecl(INIT.str, NamedType.BOOL));
 	}
 
 	@Override
@@ -64,6 +82,7 @@ public class BmcEngine extends SolverBasedEngine {
 					sendUnknown(bad);
 				}
 			}
+			
 		} while (!properties.isEmpty() && result instanceof SatResult);
 
 		sendBaseStep(k);

@@ -35,15 +35,16 @@ public class Specification {
 
 	public Relation getTransitionRelation() {
 		if (transitionRelation == null) {
-			transitionRelation = Lustre2Sexp.constructTransitionRelation(node);
+			//transitionRelation = Lustre2Sexp.constructTransitionRelation(node);
+			transitionRelation = Lustre2Sexp.constructIvcTransitionRelation(node);	
 		}
 		return transitionRelation;
 	}
 
 	public Relation getIvcTransitionRelation() {
-		if (ivcTransitionRelation == null) {
-			ivcTransitionRelation = Lustre2Sexp.constructIvcTransitionRelation(node);
+		if (transitionRelation == null) {
+			transitionRelation = Lustre2Sexp.constructIvcTransitionRelation(node);
 		}
-		return ivcTransitionRelation;
+		return transitionRelation;
 	}
 }

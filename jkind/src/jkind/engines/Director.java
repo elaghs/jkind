@@ -146,7 +146,7 @@ public class Director extends MessageHandler {
 			processMessages();
 			sleep(100);
 		} 
-		if (timeout() && aivcIdx){
+		if (timeout() && settings.allIvcs){
 			((AllIvcsExtractorEngine)(engines.get(aivcIndx))).getValid();
 		}
 		

@@ -932,8 +932,8 @@ public class AllIvcsExtractorEngine extends SolverBasedEngine {
 	
 	public  void getValid(){
 		runtime = (System.currentTimeMillis() - runtime) / 1000.0;
-		recordRuntime(true);
-		sendValid("OK", gvm);
+		recordRuntime(true); 
+		sendValid("OK", gvm); 
 	}
 	
 	@Override
@@ -990,7 +990,7 @@ public class AllIvcsExtractorEngine extends SolverBasedEngine {
 	// recording intermediate results for the experiments	
  
 		private void writeToXmlAllIvcs(Set<String> trimmed, Set<String> untrimmed, double d, boolean isNew) {
-	 		String xmlFilename = settings.filename + "_alg" + settings.allIvcsAlgorithm + "_all_uc_minijkind.xml";  
+			String xmlFilename = settings.filename + "_alg" + settings.allIvcsAlgorithm + "_all_uc_minijkind.xml";  
  
 			try (PrintWriter out = new PrintWriter(new FileOutputStream(new File(xmlFilename), true))) { 
 				out.println("<Results>");
