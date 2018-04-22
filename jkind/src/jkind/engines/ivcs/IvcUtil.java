@@ -124,7 +124,7 @@ public class IvcUtil {
 				+ " try to re-run the process with  -pdr_max 0  option.");
 	}
 
-	protected static Set<String> getIvcNames(LinkedBiMap<String, Symbol> ivcMap, List<Symbol> symbols) {
+	public static Set<String> getIvcNames(LinkedBiMap<String, Symbol> ivcMap, List<Symbol> symbols) {
 		Set<String> result = new HashSet<>();
 		for (Symbol s : symbols) {
 			result.add(ivcMap.inverse().get(s));

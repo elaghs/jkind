@@ -208,7 +208,7 @@ public class Director extends MessageHandler {
 			addEngine(new BmcEngine(analysisSpec, settings, this));
 		}
 
-		if (settings.kInduction) {
+	/*	if (settings.kInduction) {
 			addEngine(new KInductionEngine(analysisSpec, settings, this));
 		}
 
@@ -246,7 +246,7 @@ public class Director extends MessageHandler {
 		
 		if (settings.allIvcs) { 
 			addEngine(new AllIvcsExtractorrEngine(analysisSpec, settings, this));
-		} 
+		} */
 	}
 
 	private void addEngine(Engine engine) {
