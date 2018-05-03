@@ -20,7 +20,6 @@ import jkind.solvers.UnknownResult;
 import jkind.translation.Lustre2Sexp;
 import jkind.translation.Specification;
 import jkind.util.LinkedBiMap;
-import jkind.util.SexpUtil;
 import jkind.util.StreamIndex;
 
 public class BmcEngine extends SolverBasedEngine {
@@ -47,7 +46,6 @@ public class BmcEngine extends SolverBasedEngine {
 	@Override
 	public void main() {
 		createVariables(-1);
-		solver.assertSexp(SexpUtil.conjoin(ivcMap.valueList()));
 		for (int k = 0; k < settings.n; k++) {
 			comment("K = " + (k + 1));
 			processMessages();
