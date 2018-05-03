@@ -17,7 +17,6 @@ import jkind.solvers.Model;
 import jkind.solvers.Result;
 import jkind.solvers.SatResult;
 import jkind.solvers.UnknownResult;
-import jkind.solvers.UnsatResult;
 import jkind.translation.Lustre2Sexp;
 import jkind.translation.Specification;
 import jkind.util.LinkedBiMap;
@@ -65,9 +64,9 @@ public class BmcEngine extends SolverBasedEngine {
 
 	private void checkProperties(int k) {
 		Result result;
-		while(true) {
-		//	result = solver.query(StreamIndex.conjoinEncodings(properties, k));
-			result = solver.unsatQuery(ivcMap.valueList(), StreamIndex.conjoinEncodings(properties, k));
+		do {
+			result = solver.query(StreamIndex.conjoinEncodings(properties, k));
+
 			if (result instanceof SatResult || result instanceof UnknownResult) {
 				Model model = getModel(result);
 				if (model == null) {
@@ -85,15 +84,8 @@ public class BmcEngine extends SolverBasedEngine {
 					sendUnknown(bad);
 				}
 			}
-			if (result instanceof UnsatResult){
-				System.out.println("hereee");
-			List<Symbol> unsatCore = ((UnsatResult) result).getUnsatCore();
-			System.out.println(k +":  "+ unsatCore.toString());
-			}
-			if (properties.isEmpty() || result instanceof SatResult)
-			{System.out.println("hhhhhhh");
-				break;}
-		} 
+			
+		} while (!properties.isEmpty() && result instanceof SatResult);
 
 		sendBaseStep(k);
 	}
