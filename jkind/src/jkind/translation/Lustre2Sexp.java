@@ -46,8 +46,7 @@ public class Lustre2Sexp implements ExprVisitor<Sexp> {
 	}
 
 	public static Relation constructTransitionRelation(Node node) {
-		//return constructGeneralTransitionRelation(node, Collections.emptyList());
-		return constructGeneralTransitionRelation(node, node.ivc);
+		return constructGeneralTransitionRelation(node, Collections.emptyList());
 	}
 
 	public static Relation constructIvcTransitionRelation(Node node) {

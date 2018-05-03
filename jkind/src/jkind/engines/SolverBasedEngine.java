@@ -45,7 +45,7 @@ public abstract class SolverBasedEngine extends Engine {
 		}
 	}
 
-	protected void initializeSolver() { 
+	protected void initializeSolver() {
 		solver = getSolver();
 		solver.initialize();
 		solver.define(spec.getTransitionRelation());
